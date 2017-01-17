@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20170117205954) do
 
   create_table "answer_options", force: :cascade do |t|
     t.integer  "question_id"
-    t.text     "content",     null: false
-    t.boolean  "is_correct",  null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "content",                     null: false
+    t.boolean  "is_correct",  default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["question_id"], name: "index_answer_options_on_question_id", using: :btree
   end
 
