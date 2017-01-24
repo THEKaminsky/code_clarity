@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'autoprefixer-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'pry'
+gem 'devise'
 
 
 group :development, :test do
