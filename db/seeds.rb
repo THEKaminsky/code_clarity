@@ -1,14 +1,14 @@
 user_list = [
-  [ "Sam", "Smith", "SamS@example.com"],
-  [ "Jim", "Jones", "JJones@example.com"],
-  [ "Chris", "Canes", "Canes@example.com"],
-  [ "Walter", "White", "Cooker@example.com"],
+  ["SamS@example.com", "pasdfj43sword"],
+  ["JJones@example.com", "pas23roavhovsword"],
+  ["Canes@example.com", "pas234a0s9fdusword"],
+  ["Cooker@example.com", "pass23raokoword"]
 ]
 
 question_list = [
-  ["What color is the color blue?"],
-  ["What is 2 + 3?"],
-  ["What smells like oranges?"]
+  "What color is the color blue?",
+  "What is 2 + 3?",
+  "What smells like oranges?"
 ]
 
 answer_option_list = [
@@ -46,8 +46,8 @@ question_list.each do |content|
   Question.find_or_create_by( content: content )
 end
 
-user_list.each do |fname, lname, email|
-  User.find_or_create_by( fname: fname, lname: lname, email: email )
+user_list.each do |email, password|
+  User.find_or_create_by(email: email, password: password)
 end
 
 answer_option_list.each do |question_id, content, is_correct|
