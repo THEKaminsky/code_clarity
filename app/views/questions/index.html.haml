@@ -1,0 +1,11 @@
+= render 'layouts/header'
+
+%h1 Questions List
+
+.container
+  - @questions.each do |q|
+    %strong #{q.id} : #{q.content}
+    %br/
+    = link_to "Details for question #{q.id}", {:action => 'show', :id => q.id}
+    %br/
+    %br/
