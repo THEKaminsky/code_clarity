@@ -1,0 +1,14 @@
+= render 'layouts/header'
+
+%h1 Question ##{@question.id}
+.container
+  %strong #{@question.content}
+  %br/
+  %br/
+  = form_for @user_answer, url: question_user_answers_path(@question) do |f|
+    -for answer in @question.answer_options do
+      = f.radio_button :answer_option_id, answer.id
+      = f.label "answer_option_id_#{answer.id}", answer.content
+      %br/
+    %br/
+    = f.submit "Submit"
