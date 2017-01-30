@@ -21,6 +21,6 @@ class UserAnswersController < ApplicationController
 
   private def next_question
     #the or will be the behavior for after the last.
-    question.next || Question.first
+    question.next(current_user.id) || Question.first
   end
 end
