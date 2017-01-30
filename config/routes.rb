@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'welcome/index'
+  get 'shared/index'
 
-  root 'welcome#index'
+  root 'shared#index'
 
   resources :questions do
     resources :user_answers, only: [:create]
