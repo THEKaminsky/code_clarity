@@ -4,11 +4,18 @@ class Question < ActiveRecord::Base
 
   validates :content, presence: true
 
-  def answer_for_user (user, answer_option)
+  # scope :answered, (question_id) -> {}
+
+  def answer_for_user(user, answer_option)
+
     UserAnswer.create(user_id: user.id, answer_option_id: answer_option.id)
   end
 
-  def next
-    Question.where("id > ?", self.id).order("id ASC").first
+  def next(user_id)
+    answered = User.find(user_id).user_answers.includes(:question).map{|a| a.question.id }
+
+    Question.where.not(id: answered).first
+  end
+
   end
 end
