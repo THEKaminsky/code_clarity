@@ -1,5 +1,5 @@
 .nav.navbar.banner
-  %h1.navbar-text Code Clarity
+  %h1.navbar-text.home-link= link_to "Code Clarity", root_path
   %p.navbar-text.pull-right
     - if user_signed_in?
       Logged in as
