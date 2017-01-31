@@ -1,4 +1,4 @@
-class UserAnswersController < ApplicationController
+class AttemptsController < ApplicationController
 
   def index
   end
@@ -20,7 +20,7 @@ class UserAnswersController < ApplicationController
   end
 
   private def answer_option
-    @answer_option ||= question.answer_options.where(id: params[:user_answer][:answer_option_id]).first
+    @answer_option ||= question.answer_options.where(id: params[:attempt][:answer_option_id]).first
   end
 
   private def has_next_question?

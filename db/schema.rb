@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170123213400) do
+ActiveRecord::Schema.define(version: 20170131183800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,19 +24,19 @@ ActiveRecord::Schema.define(version: 20170123213400) do
     t.index ["question_id"], name: "index_answer_options_on_question_id", using: :btree
   end
 
-  create_table "questions", force: :cascade do |t|
-    t.text     "content",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_answers", force: :cascade do |t|
+  create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "answer_option_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["answer_option_id"], name: "index_user_answers_on_answer_option_id", using: :btree
-    t.index ["user_id"], name: "index_user_answers_on_user_id", using: :btree
+    t.index ["answer_option_id"], name: "index_attempts_on_answer_option_id", using: :btree
+    t.index ["user_id"], name: "index_attempts_on_user_id", using: :btree
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text     "content",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
