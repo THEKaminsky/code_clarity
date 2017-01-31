@@ -5,6 +5,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @user_answer = UserAnswer.new(params[:user_id => current_user.id])
+    @attempt = Attempt.new(params[:user_id => current_user.id])
   end
 end

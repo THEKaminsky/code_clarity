@@ -1,6 +1,6 @@
 class AnswerOption < ActiveRecord::Base
   belongs_to :question
-  has_many :user_answers
+  has_many :attempts
 
   validates :content, presence: true
 end
