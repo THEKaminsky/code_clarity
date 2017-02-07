@@ -4,7 +4,8 @@ class AttemptsController < ApplicationController
   end
 
   def create
-    question.answer_for_user(current_user, answer_option)
+    @attempt = question.answer_for_user(current_user, answer_option, start_time)
+    duration_in_seconds
     if has_next_question?
       redirect_to next_question
     else
@@ -15,19 +16,29 @@ class AttemptsController < ApplicationController
   def new
   end
 
-  private def question
+  private
+  def question
     @question ||= Question.find(params[:question_id])
   end
 
-  private def answer_option
+  def answer_option
     @answer_option ||= question.answer_options.where(id: params[:attempt][:answer_option_id]).first
   end
 
-  private def has_next_question?
+  def start_time
+    @start_time ||= params[:attempt][:start_time]
+  end
+
+  def duration_in_seconds
+     @attempt[:duration_in_seconds] = @attempt[:created_at] - @attempt[:start_time]
+     @attempt.save
+  end
+
+  def has_next_question?
     question.next(current_user.id).present?
   end
 
-  private def next_question
+  def next_question
     question.next(current_user.id)
   end
 end

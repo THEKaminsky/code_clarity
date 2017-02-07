@@ -6,6 +6,7 @@
   %br/
   %br/
   = form_for @attempt, url: question_attempts_path(@question) do |f|
+    = f.hidden_field :start_time, value: Time.now.utc
     -for answer in @question.answer_options do
       = f.radio_button :answer_option_id, answer.id
       = f.label "answer_option_id_#{answer.id}", answer.content

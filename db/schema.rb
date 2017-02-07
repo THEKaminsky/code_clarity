@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20170131191255) do
   create_table "attempts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "answer_option_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.datetime "start_time",       null: false
-    t.datetime "end_time"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.datetime "start_time",          null: false
+    t.float    "duration_in_seconds"
     t.index ["answer_option_id"], name: "index_attempts_on_answer_option_id", using: :btree
     t.index ["user_id"], name: "index_attempts_on_user_id", using: :btree
   end
