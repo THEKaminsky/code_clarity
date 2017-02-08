@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131191255) do
+ActiveRecord::Schema.define(version: 20170123204933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,15 @@ ActiveRecord::Schema.define(version: 20170131191255) do
   end
 
   create_table "attempts", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",             null: false
     t.integer  "answer_option_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.integer  "question_id",         null: false
     t.datetime "start_time",          null: false
     t.float    "duration_in_seconds"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.index ["answer_option_id"], name: "index_attempts_on_answer_option_id", using: :btree
+    t.index ["question_id"], name: "index_attempts_on_question_id", using: :btree
     t.index ["user_id"], name: "index_attempts_on_user_id", using: :btree
   end
 

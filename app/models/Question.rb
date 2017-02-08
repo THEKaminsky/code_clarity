@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
   has_many :answer_options
-  has_many :attempts, through: :answer_options
+  has_many :attempts
 
   validates :content, presence: true
 
