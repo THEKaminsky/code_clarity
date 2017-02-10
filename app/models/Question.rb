@@ -4,12 +4,6 @@ class Question < ActiveRecord::Base
 
   validates :content, presence: true
 
-  # scope :answered, (question_id) -> {}
-
-  def answer_for_user(user, answer_option, start_time)
-    Attempt.create(user_id: user.id, answer_option_id: answer_option.id, start_time: start_time)
-  end
-
   def next(user_id)
     Question.where.not(id: answered_questions(user_id)).first
   end
