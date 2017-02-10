@@ -1,19 +1,13 @@
 class AttemptsController < ApplicationController
-
-  def index
-  end
-
-  def create
-    @attempt = question.answer_for_user(current_user, answer_option, start_time)
+  def update
+    @attempt = Attempt.find_by(user_id: current_user.id, question_id: question.id)
+    @attempt.update(answer_option_id: answer_option.id)
     duration_in_seconds
     if has_next_question?
       redirect_to next_question
     else
       redirect_to complete_path
     end
-  end
-
-  def new
   end
 
   private
@@ -25,13 +19,9 @@ class AttemptsController < ApplicationController
     @answer_option ||= question.answer_options.where(id: params[:attempt][:answer_option_id]).first
   end
 
-  def start_time
-    @start_time ||= params[:attempt][:start_time]
-  end
-
   def duration_in_seconds
-     @attempt[:duration_in_seconds] = @attempt[:created_at] - @attempt[:start_time]
-     @attempt.save
+    @attempt[:duration_in_seconds] = @attempt[:updated_at] - @attempt[:start_time]
+    @attempt.save
   end
 
   def has_next_question?
