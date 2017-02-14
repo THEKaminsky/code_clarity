@@ -7,7 +7,7 @@
   %br/
   = form_for @attempt, url: question_attempt_path(@question) do |f|
     -for answer in @question.answer_options do
-      = f.radio_button :answer_option_id, answer.id
+      = f.radio_button :answer_option_id, answer.id, required: true
       = f.label "answer_option_id_#{answer.id}", answer.content
       %br/
     %br/
